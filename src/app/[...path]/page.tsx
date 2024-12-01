@@ -5,9 +5,10 @@ import { replace_dynamic_variables } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Metadata } from "next/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function generateMetadata({ params }: { params: any }) {
+export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
     const file_name = (await params).path.join("");
     const { blobs } = await list();
     const file = blobs.find(blob => blob.pathname.trim().replaceAll(".png", "").replaceAll(".jpg", "") === file_name.trim().replaceAll(".png", "").replaceAll(".jpg", ""));
@@ -22,15 +23,17 @@ export async function generateMetadata({ params }: { params: any }) {
     return {
         title: settings.site.Title,
         description: settings.site.Description,
-
+        
         openGraph: {
-            title: replace_dynamic_variables(settings.embed_data.Title, file),
-            description: replace_dynamic_variables(settings.embed_data.Description, file),
+            title: replace_dynamic_variables(settings.embed_data.Title, file, blobs.length),
+            description: replace_dynamic_variables(settings.embed_data.Description, file, blobs.length),
             images: [
                 {
                     url: file.url,
                 },
             ],
+
+            siteName: replace_dynamic_variables(settings.embed_data["Site Name"], file, blobs.length),
         },
     };
 }
@@ -50,11 +53,11 @@ export default async function Page( { params }: { params: any }) {
         <main className="flex flex-col items-center justify-center p-4 h-screen">
             <Card>
                 <CardHeader>
-                    <CardTitle>{replace_dynamic_variables(settings.embed_data.Title, file)}</CardTitle>
-                    <CardDescription>{replace_dynamic_variables(settings.embed_data.Description, file)}</CardDescription>
+                    <CardTitle>{replace_dynamic_variables(settings.embed_data.Title, file, blobs.length)}</CardTitle>
+                    <CardDescription className="max-w-[25vw] text-wrap">{replace_dynamic_variables(settings.embed_data.Description, file, blobs.length)}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <img src={file.url} alt={file.pathname} className=" max-w-[25vw] object-cover" />
+                    <img src={file.url} alt={file.pathname} className="max-w-[25vw] object-cover" />
                 </CardContent>
                 <CardFooter className="flex flex-row gap-2 justify-center">
                     <Link href={settings.page_redirect}>
