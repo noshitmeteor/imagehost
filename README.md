@@ -12,8 +12,16 @@ This is a simple image hosting website that allows you to upload images and have
 ## Example
 <img width="515" alt="image" src="https://github.com/user-attachments/assets/fe0f7521-f3c3-46ae-aa5d-6e8c4612f726">
 
-## Installation
-Will be added soon.
+## Local Development
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Create a vercel blob storage and add the environement variables needed to the `.env.local` file (if you don't have one, create one)
+4. Create your own API key from this [link](https://generate-random.org/api-key-generator)
+5. Add the API Key to the `.env.local` file (example: `API_KEY=your-api-key`) this is kind of like a password, so don't share it with anyone
+4. Run `npm run dev` to start the development server
+5. Open `http://localhost:3000` in your browser
+6. Change the settings in `settings.ts` to your liking
 
-## Usage
-Will be added soon.
+## Deploying
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnotpoiu%2Fimagehost.git&env=API_KEY&envDescription=A%20Custom%20API%20Key%20that%20will%20serve%20as%20the%20way%20to%20validate%20that%20the%20screenshot%20is%20uploaded%20from%20you.%20Do%20NOT%20share%20this%20api%20key%20to%20anyone.&project-name=my-image-host&repository-name=my-image-host&stores=%5B%7B%22type%22%3A%22blob%22%7D%5D)
