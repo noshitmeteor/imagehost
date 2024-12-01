@@ -2,6 +2,9 @@ import { list } from "@vercel/blob"
 import { notFound } from "next/navigation";
 import { settings } from "../../../settings";
 import { replace_dynamic_variables } from "@/lib/utils";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function generateMetadata({ params }: { params: any }) {
@@ -44,8 +47,28 @@ export default async function Page( { params }: { params: any }) {
     }
 
     return (
-        <p>
+        <main className="flex flex-col items-center justify-center p-4 h-screen">
+            <Card>
+                <CardHeader>
+                    <CardTitle>{replace_dynamic_variables(settings.embed_data.Title, file)}</CardTitle>
+                    <CardDescription>{replace_dynamic_variables(settings.embed_data.Description, file)}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <img src={file.url} alt={file.pathname} className=" max-w-[25vw] object-cover" />
+                </CardContent>
+                <CardFooter className="flex flex-row gap-2 justify-center">
+                    <Link href={settings.page_redirect}>
+                        <Button variant="outline" size={"sm"}>Back to Home</Button>
+                    </Link>
+                    <Link href={file.url} target="_blank">
+                        <Button variant="outline" size={"sm"}>Open Raw</Button>
+                    </Link>
+                </CardFooter>
+            </Card>
 
-        </p>
+            {settings.site["Show Credits"] == true && (
+                <p className="text-xs text-muted-foreground fixed bottom-4 right-4">Made with ❤️ by <Link href="https://github.com/notpoiu" className='text-blue-400' target='_blank'>upio</Link></p>
+            )}
+        </main>
     )    
 }

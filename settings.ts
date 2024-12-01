@@ -13,6 +13,7 @@ export const settings = {
     site: {
         "Title": "upio's image host",
         "Description": "erm what the flip",
+        "Show Credits": true,
     },
 
     page_redirect: "https://www.upio.dev/"
