@@ -34,8 +34,6 @@ export async function generateMetadata({ params }: { params: any }): Promise<Met
             ],
 
             siteName: settings.embed_data["Site Name"] ? replace_dynamic_variables(settings.embed_data["Site Name"], file, blobs.length) : undefined,
-            publishedTime: settings.embed_data.timestamp ? file.uploadedAt.toISOString() : undefined,
-            modifiedTime: settings.embed_data.timestamp ? file.uploadedAt.toISOString() : undefined,
         },
     };
 }
@@ -45,7 +43,7 @@ export default async function Page( { params }: { params: any }) {
     const file_name = (await params).path.join("");
     const { blobs } = await list();
     const file = blobs.find(blob => blob.pathname.trim().replaceAll(".png", "").replaceAll(".jpg", "").replaceAll(".jpeg", "") === file_name.trim().replaceAll(".png", "").replaceAll(".jpg", "").replaceAll(".jpeg", ""));
-    
+
     if (!file) {
         return notFound();
     }

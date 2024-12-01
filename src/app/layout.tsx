@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: settings.embed_data.Color,
+  themeColor: settings.embed_data.Color ? settings.embed_data.Color : "#7289da",
   colorScheme: "dark"
 }
 
