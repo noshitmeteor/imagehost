@@ -11,7 +11,7 @@ import { Metadata } from "next/types";
 export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
     const file_name = (await params).path.join("");
     const { blobs } = await list();
-    const file = blobs.find(blob => blob.pathname.trim().replaceAll(".png", "").replaceAll(".jpg", "") === file_name.trim().replaceAll(".png", "").replaceAll(".jpg", ""));
+    const file = blobs.find(blob => blob.pathname.trim().replaceAll(".png", "").replaceAll(".jpg", "").replaceAll(".jpeg", "") === file_name.trim().replaceAll(".png", "").replaceAll(".jpg", "").replaceAll(".jpeg", ""));
 
     if (!file) {
         return {
@@ -44,8 +44,7 @@ export async function generateMetadata({ params }: { params: any }): Promise<Met
 export default async function Page( { params }: { params: any }) {
     const file_name = (await params).path.join("");
     const { blobs } = await list();
-
-    const file = blobs.find(blob => blob.pathname.trim().replaceAll(".png", "").replaceAll(".jpg", "") === file_name.trim().replaceAll(".png", "").replaceAll(".jpg", ""));
+    const file = blobs.find(blob => blob.pathname.trim().replaceAll(".png", "").replaceAll(".jpg", "").replaceAll(".jpeg", "") === file_name.trim().replaceAll(".png", "").replaceAll(".jpg", "").replaceAll(".jpeg", ""));
     
     if (!file) {
         return notFound();
