@@ -32,7 +32,8 @@ export async function generateMetadata({ params }: { params: any }) {
     };
 }
 
-export default async function Page( { params }: { params: { path: string[] } }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function Page( { params }: { params: any }) {
     const file_name = (await params).path.join("");
     const { blobs } = await list();
 
