@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
         }, { status: 500 })
     }
 
-    if (req.headers.get("Authorization") !== process.env["API_KEY"]) {
+    if (req.headers.get("Authorization") !== `Bearer ${process.env["API_KEY"]}`) {
         return NextResponse.json({
             error: "Unauthorized",
         }, { status: 401 })
