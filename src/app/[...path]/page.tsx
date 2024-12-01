@@ -33,7 +33,9 @@ export async function generateMetadata({ params }: { params: any }): Promise<Met
                 },
             ],
 
-            siteName: replace_dynamic_variables(settings.embed_data["Site Name"], file, blobs.length),
+            siteName: settings.embed_data["Site Name"] ? replace_dynamic_variables(settings.embed_data["Site Name"], file, blobs.length) : undefined,
+            publishedTime: settings.embed_data.timestamp ? file.uploadedAt.toISOString() : undefined,
+            modifiedTime: settings.embed_data.timestamp ? file.uploadedAt.toISOString() : undefined,
         },
     };
 }

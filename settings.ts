@@ -11,6 +11,8 @@ export const settings = {
         "Title": "upio's image host | %file_name%",
         "Description": "erm what the flip mane this file is literally %file_size% big but like erm i uploaded %uploaded_files% files",
         "Color": "#7289da",
+
+        timestamp: true,
     },
 
     site: {
