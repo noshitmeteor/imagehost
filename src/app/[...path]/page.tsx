@@ -2,9 +2,8 @@ import { list } from "@vercel/blob"
 import { notFound } from "next/navigation";
 import { settings } from "../../../settings";
 import { replace_dynamic_variables } from "@/lib/utils";
-import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { path: string[] } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { path: string[] } }) {
     const file_name = (await params).path.join("");
     const { blobs } = await list();
     const file = blobs.find(blob => blob.pathname.trim().replaceAll(".png", "").replaceAll(".jpg", "") === file_name.trim().replaceAll(".png", "").replaceAll(".jpg", ""));
