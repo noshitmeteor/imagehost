@@ -36,12 +36,13 @@ export function DiscordEmbedViewer({
   image,
 }: DiscordEmbedProps) {
   return (
-    <Card className="max-w-[512px] bg-[#36393f] text-white overflow-hidden rounded-none">
-      <CardContent className="p-4">
+    <Card className="max-w-[512px] bg-[#36393f] text-white overflow-hidden rounded-sm">
+      <CardContent className="p-4 relative">
+        <div className="absolute top-0 left-0 h-full w-1" style={{ backgroundColor: color }} />
         <div className="flex flex-col space-x-4">
           <div className="flex-grow">
             {author && (
-              <div className="flex items-center mb-2">
+              <div className="flex items-center mb-2 text-muted-foreground text-xs">
                 {author.iconUrl && (
                   <Avatar className="w-6 h-6 mr-2">
                     <AvatarImage src={author.iconUrl} alt={author.name} />
@@ -51,7 +52,7 @@ export function DiscordEmbedViewer({
                 <span className="text-sm font-medium">{author.name}</span>
               </div>
             )}
-            {title && <h3 className="text-lg font-semibold mb-2">{title}</h3>}
+            {title && <h3 className="text-lg font-semibold mb-2 text-blue-400">{title}</h3>}
             {description && <p className="text-sm mb-4">{description}</p>}
             {fields && fields.length > 0 && (
               <div className="grid grid-cols-2 gap-4 mb-4">
@@ -91,7 +92,6 @@ export function DiscordEmbedViewer({
           <img src={image} alt="Image" className="px-2 py-1 rounded-md object-cover" />
         )}
       </CardContent>
-      <div className="h-1" style={{ backgroundColor: color }} />
     </Card>
   )
 }

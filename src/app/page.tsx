@@ -17,6 +17,11 @@ export default async function Home() {
       <div>
         <p className='text-blue-400'>http://localhost:3000/exampleimage</p>
         <DiscordEmbedViewer
+          author={{name: replace_dynamic_variables(settings.embed_data['Site Name'], {
+            pathname: "exampleimage",
+            size: 4325890,
+            uploadedAt: new Date(),
+          }, 1)}}
           title={replace_dynamic_variables(settings.embed_data.Title, {
             pathname: "exampleimage",
             size: 4325890,
@@ -27,7 +32,7 @@ export default async function Home() {
             size: 4325890,
             uploadedAt: new Date(),
           }, 1)}
-          color="#7289da"
+          color={settings.embed_data.Color}
           image="https://images.unsplash.com/photo-1579547945478-a6681fb3c3c9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         />
       </div>
