@@ -19,7 +19,7 @@ export const settings = {
         "Show Credits": true,
     },
 
-    page_redirect: "https://www.upio.dev/"
+    page_redirect: ""
 }
 
 export const upload_limit = 5; // MB
