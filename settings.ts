@@ -15,11 +15,11 @@ export const settings = {
 
     site: {
         "Title": "upio's image host",
-        "Description": "erm what the flip",
-        "Show Credits": true,
+        "Description": "erm what the flip",https://e-z.host/
+        "Show Credits": false,
     },
 
-    page_redirect: ""
+    page_redirect: "https://imagehost-chi.vercel.app/"
 }
 
 export const upload_limit = 5; // MB
